@@ -18,7 +18,8 @@ unless Puppet[:server] == Puppet[:certname]
 end
 
 def sign_cert(certname,allow_dns_alt_names)
-  if allow_dns_alt_names    
+  if allow_dns_alt_names   
+    puts 'allow_dns_alt_names' 
     stdout, stderr, status = Open3.capture3('/opt/puppetlabs/puppet/bin/puppet', 'cert', 'sign', certname, '--allow_dns_alt_names')
   else
     stdout, stderr, status = Open3.capture3('/opt/puppetlabs/puppet/bin/puppet', 'cert', 'sign', certname)
@@ -44,6 +45,8 @@ allow_dns_alt_names = false
 if params['allow_dns_alt_names'] == 'yes'
   allow_dns_alt_names = true
 end
+puts "certnames: #{certnames}"
+puts "allow_dns_alt_names: #{allow_dns_alt_names}"
 
 certnames.each do |certname|
   results[certname] = {}
