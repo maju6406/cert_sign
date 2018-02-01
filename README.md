@@ -55,6 +55,6 @@ bolt task run purge_node agent_certnames=foo,bar,baz --nodes master.corp.net
 ## Parameters
 
 * `agent_certnames`: A comma-separated list of Puppet agent certificate names.
-* `allow_dns_alt_names`: Sign a certificate request even if it contains one or more alternate DNS names. Defaults to yes.
+* `allow_dns_alt_names`: Sign a certificate request even if it contains one or more alternate DNS names. Defaults to no.
 
 NOTE: You can not specify `all` or `--all` in the `agent_certnames` parameter. Attempts to sign the Puppet master cert will be ignored.
