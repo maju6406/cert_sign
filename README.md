@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/maju6406/cert_sign.svg?branch=master)](https://travis-ci.org/maju6406/cert_sign)
-[![Puppet Forge](https://img.shields.io/puppetforge/v/maju6406/cert_sign.svg)](https://forge.puppetlabs.com/maju6406/cert_sign)
+[![Puppet Forge](https://img.shields.io/puppetforge/v/beersy/cert_sign.svg)](https://forge.puppetlabs.com/beersy/cert_sign)
 
 # Puppet Cert Sign Task
 
