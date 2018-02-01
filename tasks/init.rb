@@ -44,9 +44,6 @@ allow_dns_alt_names = false
 if params['allow_dns_alt_names'] == 'yes'
   allow_dns_alt_names = true
 end
-puts "certnames: #{certnames}"
-puts "allow_dns_alt_names: #{allow_dns_alt_names}"
-puts 
 
 certnames.each do |certname|
   results[certname] = {}
@@ -60,7 +57,7 @@ certnames.each do |certname|
   results[certname][:result] = if output[:exit_code].zero?
                               "Cert successfully signed for #{certname}"
                             else
-                              output
+                              "There was an issue signing #{certname}: #{output}"                              
                             end
 end
 
