@@ -17,11 +17,6 @@ unless Puppet[:server] == Puppet[:certname]
   exit 1
 end
 
-if params['agent_certnames'].include? "all"
-  puts '--all is not a supported option for this task'
-  exit 2
-end
-
 def sign_cert(certname,allow_dns_alt_names)
   if allow_dns_alt_names    
     stdout, stderr, status = Open3.capture3('/opt/puppetlabs/puppet/bin/puppet', 'cert', 'sign', certname, '--allow_dns_alt_names')
@@ -37,6 +32,12 @@ end
 
 results = {}
 params = JSON.parse(STDIN.read)
+
+if params['agent_certnames'].include? "all"
+  puts '--all is not a supported option for this task'
+  exit 2
+end
+
 certnames = params['agent_certnames'].split(',')
 allow_dns_alt_names = false
 
