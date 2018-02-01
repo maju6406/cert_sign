@@ -17,8 +17,8 @@ unless Puppet[:server] == Puppet[:certname]
   exit 1
 end
 
-def sign_cert(certname,allow_dns_alt_names)
-  if allow_dns_alt_names   
+def sign_cert(certname, allow_dns_alt_names)
+  if allow_dns_alt_names
     stdout, stderr, status = Open3.capture3('/opt/puppetlabs/puppet/bin/puppet', 'cert', 'sign', certname, '--allow_dns_alt_names')
   else
     stdout, stderr, status = Open3.capture3('/opt/puppetlabs/puppet/bin/puppet', 'cert', 'sign', certname)
@@ -27,13 +27,13 @@ def sign_cert(certname,allow_dns_alt_names)
     stdout: stdout.strip,
     stderr: stderr.strip,
     exit_code: status.exitstatus,
-  }  
+  }
 end
 
 results = {}
 params = JSON.parse(STDIN.read)
 
-if params['agent_certnames'].include? "all"
+if params['agent_certnames'].include? 'all'
   puts '--all is not a supported option for this task'
   exit 2
 end
@@ -53,12 +53,12 @@ certnames.each do |certname|
     next
   end
 
-  output = sign_cert(certname,allow_dns_alt_names)
+  output = sign_cert(certname, allow_dns_alt_names)
   results[certname][:result] = if output[:exit_code].zero?
-                              "Cert successfully signed for #{certname}"
-                            else
-                              "There was an issue signing #{certname}: #{output[:stderr]}"                              
-                            end
+                                 "Cert successfully signed for #{certname}"
+                               else
+                                 "There was an issue signing #{certname}: #{output[:stderr]}"
+                               end
 end
 
 puts results.to_json

@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/maju6406/cert_sign.svg?branch=master)](https://travis-ci.org/maju6406/cert_sign)
 [![Puppet Forge](https://img.shields.io/puppetforge/v/maju6406/cert_sign.svg)](https://forge.puppetlabs.com/maju6406/cert_sign)
 
 # Puppet Cert Sign Task
@@ -49,7 +50,7 @@ Duration: 6 sec
 With [Bolt](https://puppet.com/docs/bolt/0.x/running_tasks_and_plans_with_bolt.html), you can run this task on the command line like so:
 
 ```shell
-bolt task run purge_node agent_certnames=foo,bar,baz --nodes master.corp.net
+bolt task run cert_sign agent_certnames=foo,bar,baz --nodes master.corp.net
 ```
 
 ## Parameters
