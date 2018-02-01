@@ -57,7 +57,7 @@ certnames.each do |certname|
   results[certname][:result] = if output[:exit_code].zero?
                               "Cert successfully signed for #{certname}"
                             else
-                              "There was an issue signing #{certname}: #{output}"                              
+                              "There was an issue signing #{certname}: #{output[:stderr]}"                              
                             end
 end
 
